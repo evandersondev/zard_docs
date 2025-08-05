@@ -12,8 +12,8 @@ Initializes a new instance of `ZEnum` with an optional custom error message if t
 Example:
 
 ```dart
-final map = z.enumerate(['a', 'b', 'c'].parse(['a', 'b', 'c']));
-// returns ['a', 'b', 'c']
+final map = z.$enum$(['a', 'b', 'c'].parse('a'));
+// returns 'a'
 ```
 
 ---
@@ -29,7 +29,7 @@ Extract value from enum transform.
 Example:
 
 ```dart
-final schema = z.enumerate(['a', 'b', 'c']);
+final schema = z.$enum$(['a', 'b', 'c']);
 
 final map = schema.extract(['a', 'b']);
 // returns ['a', 'b']
@@ -46,7 +46,7 @@ Exclude value from enum transform.
 Example:
 
 ```dart
-final schema = z.enumerate(['a', 'b', 'c']);
+final schema = z.$enum$(['a', 'b', 'c']);
 
 final map = schema.exclude(['a', 'b']);
 // returns ['c']
