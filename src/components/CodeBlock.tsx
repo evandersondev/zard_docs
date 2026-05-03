@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { highlightDart } from "@/lib/highlight";
+import { highlightDart, highlightSh, highlightYaml } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
 
 interface CodeBlockProps {
@@ -17,6 +17,8 @@ export function CodeBlock({ code, language = "dart", filename, className, showCo
 
   useEffect(() => {
     if (language === "dart") setHtml(highlightDart(code));
+    else if (language === "sh") setHtml(highlightSh(code));
+    else if (language === "yaml") setHtml(highlightYaml(code));
     else setHtml(code.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
   }, [code, language]);
 

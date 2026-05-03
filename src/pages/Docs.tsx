@@ -32,6 +32,7 @@ function highlight(text: string, query: string) {
 }
 
 function BlockRenderer({ block }: { block: Block }) {
+  const { t } = useI18n();
   switch (block.kind) {
     case "p":
       return <p className="text-[15px] leading-[1.75] text-foreground/85">{block.text}</p>;
@@ -84,9 +85,9 @@ function BlockRenderer({ block }: { block: Block }) {
       );
     case "callout": {
       const styles = {
-        tip:     { icon: Lightbulb,      border: "border-l-primary",      bg: "bg-accent/40",               iconCls: "text-primary",      label: "Tip" },
-        warning: { icon: AlertTriangle,  border: "border-l-amber-500",    bg: "bg-amber-500/5",             iconCls: "text-amber-500",    label: "Warning" },
-        success: { icon: CheckCircle2,   border: "border-l-emerald-500",  bg: "bg-emerald-500/5",           iconCls: "text-emerald-500",  label: "Best practice" },
+        tip:     { icon: Lightbulb,      border: "border-l-primary",      bg: "bg-accent/40",               iconCls: "text-primary",      label: t.callouts.tip },
+        warning: { icon: AlertTriangle,  border: "border-l-amber-500",    bg: "bg-amber-500/5",             iconCls: "text-amber-500",    label: t.callouts.warning },
+        success: { icon: CheckCircle2,   border: "border-l-emerald-500",  bg: "bg-emerald-500/5",           iconCls: "text-emerald-500",  label: t.callouts.bestPractice },
       }[block.variant];
       const Icon = styles.icon;
       return (

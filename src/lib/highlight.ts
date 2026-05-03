@@ -45,3 +45,38 @@ export function highlightDart(code: string): string {
   if (last < code.length) out += escapeHtml(code.slice(last));
   return out;
 }
+
+export function highlightSh(code: string): string {
+  const re = /(#[^\n]*)|(--?[\w-]+)|('(?:[^'\\]|\\.)*')|("(?:[^"\\]|\\.)*")/g;
+  let out = '';
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(code)) !== null) {
+    if (m.index > last) out += escapeHtml(code.slice(last, m.index));
+    const [full, comment, flag, sq, dq] = m;
+    if (comment) out += `<span class="tok-comment">${escapeHtml(full)}</span>`;
+    else if (flag)   out += `<span class="tok-fn">${escapeHtml(full)}</span>`;
+    else if (sq || dq) out += `<span class="tok-string">${escapeHtml(full)}</span>`;
+    last = m.index + full.length;
+  }
+  if (last < code.length) out += escapeHtml(code.slice(last));
+  return out;
+}
+
+export function highlightYaml(code: string): string {
+  return code.split('\n').map(line => {
+    if (/^\s*#/.test(line)) return `<span class="tok-comment">${escapeHtml(line)}</span>`;
+    const m = line.match(/^(\s*)([\w.-]+)(\s*:\s*)(.*)$/);
+    if (m) {
+      const [, ws, key, sep, val] = m;
+      const eVal = escapeHtml(val);
+      const colored = eVal
+        ? /^["']/.test(eVal) || /^\d/.test(eVal) || eVal === 'true' || eVal === 'false' || eVal === 'null'
+          ? `<span class="tok-number">${eVal}</span>`
+          : `<span class="tok-string">${eVal}</span>`
+        : '';
+      return `${ws}<span class="tok-prop">${escapeHtml(key)}</span>${escapeHtml(sep)}${colored}`;
+    }
+    return escapeHtml(line);
+  }).join('\n');
+}

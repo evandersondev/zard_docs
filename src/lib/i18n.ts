@@ -122,6 +122,7 @@ if (!form.success) {
       ],
     },
     cta: { title: "Start building with Zard today", subtitle: "Add it to your pubspec, write your first schema in 60 seconds.", install: "Install", docs: "Documentation" },
+    callouts: { tip: "Tip", warning: "Warning", bestPractice: "Best practice" },
     footer: { rights: "All rights reserved.", made: "Made with ❤ for Dart & Flutter" },
     docs: {
       search: "Search the docs…",
@@ -261,6 +262,7 @@ if (!form.success) {
       ],
     },
     cta: { title: "Comece a usar Zard hoje", subtitle: "Adicione no pubspec e escreva seu primeiro schema em 60 segundos.", install: "Instalar", docs: "Documentação" },
+    callouts: { tip: "Dica", warning: "Atenção", bestPractice: "Boa prática" },
     footer: { rights: "Todos os direitos reservados.", made: "Feito com ❤ para Dart & Flutter" },
     docs: {
       search: "Buscar na documentação…",
