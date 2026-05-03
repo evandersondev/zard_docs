@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Zard design system — clean, developer-first.
+   Inspired by Zod, Vercel, Supabase, Next.js docs.
+   All colors HSL. */
+
+@layer base {
+  :root {
+    /* Neutral base — zinc */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    /* Brand: subtle, refined green */
+    --primary: 142 64% 38%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 64% 45%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 12%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 142 50% 96%;
+    --accent-foreground: 142 60% 24%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 142 64% 38%;
+
+    --radius: 0.5rem;
+
+    /* Code surfaces — calm, GitHub-ish */
+    --code-bg: 240 6% 97%;
+    --code-fg: 240 10% 14%;
+    --code-border: 240 6% 90%;
+
+    --deep: 240 10% 10%;
+
+    /* Subtle gradient ONLY for hero */
+    --gradient-brand: linear-gradient(135deg, hsl(142 64% 38%), hsl(142 64% 48%));
+    --gradient-hero: radial-gradient(ellipse at top, hsl(142 64% 38% / 0.06), transparent 60%);
+    --shadow-soft: 0 1px 2px hsl(240 6% 10% / 0.04);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 142 64% 38%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 142 64% 38%;
+  }
+
+  .dark {
+    /* Zinc-based, calm — like Vercel / GitHub dark */
+    --background: 240 6% 7%;
+    --foreground: 240 5% 96%;
+
+    --card: 240 6% 9%;
+    --card-foreground: 240 5% 96%;
+
+    --popover: 240 6% 9%;
+    --popover-foreground: 240 5% 96%;
+
+    /* Slightly desaturated green for dark mode — no neon */
+    --primary: 142 50% 50%;
+    --primary-foreground: 240 6% 7%;
+    --primary-glow: 142 50% 55%;
+
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 240 5% 96%;
+
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 4% 60%;
+
+    --accent: 142 30% 14%;
+    --accent-foreground: 142 50% 75%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 240 5% 96%;
+
+    --border: 240 5% 16%;
+    --input: 240 5% 16%;
+    --ring: 142 50% 50%;
+
+    --code-bg: 240 6% 5%;
+    --code-fg: 240 5% 92%;
+    --code-border: 240 5% 14%;
+
+    --gradient-hero: radial-gradient(ellipse at top, hsl(142 50% 40% / 0.08), transparent 60%);
+    --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.2);
+
+    --sidebar-background: 240 6% 7%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 142 50% 50%;
+    --sidebar-primary-foreground: 240 6% 7%;
+    --sidebar-accent: 240 5% 12%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 5% 16%;
+    --sidebar-ring: 142 50% 50%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+  }
+  /* Better focus ring */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  .hero-bg { background-image: var(--gradient-hero); }
+  .text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Scroll-triggered entrance animation */
+  .section-animate {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .section-animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Staggered children — need their own opacity + keyframe animation */
+  .section-animate .stagger-child {
+    opacity: 0;
+  }
+  .section-animate.in-view .stagger-child {
+    animation: stagger-fade-up 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .section-animate.in-view .stagger-child:nth-child(1) { animation-delay: 60ms; }
+  .section-animate.in-view .stagger-child:nth-child(2) { animation-delay: 130ms; }
+  .section-animate.in-view .stagger-child:nth-child(3) { animation-delay: 200ms; }
+  .section-animate.in-view .stagger-child:nth-child(4) { animation-delay: 270ms; }
+  .section-animate.in-view .stagger-child:nth-child(5) { animation-delay: 340ms; }
+  .section-animate.in-view .stagger-child:nth-child(6) { animation-delay: 410ms; }
+}
+
+@keyframes stagger-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Dart syntax highlighting — calmer, GitHub-like */
+.tok-keyword { color: hsl(340 70% 50%); }
+.tok-string  { color: hsl(150 50% 38%); }
+.tok-number  { color: hsl(25 80% 45%); }
+.tok-comment { color: hsl(240 4% 50%); font-style: italic; }
+.tok-fn      { color: hsl(220 70% 50%); }
+.tok-type    { color: hsl(190 60% 38%); }
+.tok-punct   { color: hsl(240 5% 40%); }
+.tok-prop    { color: hsl(280 55% 50%); }
+
+.dark .tok-keyword { color: hsl(340 70% 70%); }
+.dark .tok-string  { color: hsl(140 45% 65%); }
+.dark .tok-number  { color: hsl(30 80% 65%); }
+.dark .tok-comment { color: hsl(240 5% 50%); }
+.dark .tok-fn      { color: hsl(210 80% 70%); }
+.dark .tok-type    { color: hsl(180 60% 65%); }
+.dark .tok-punct   { color: hsl(240 5% 60%); }
+.dark .tok-prop    { color: hsl(280 70% 75%); }
