@@ -233,11 +233,13 @@ const Docs = () => {
   const [searchOpen, setSearchOpen] = useState(() => !!searchParams.get("q"));
   const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
 
-  // Collapsible groups
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
-    () => Object.fromEntries(GROUP_ORDER.map(g => [g, true]))
-  );
-  const toggleGroup = (g: string) => setOpenGroups(p => ({ ...p, [g]: !p[g] }));
+  // Sidebar accordion: only one group expanded at a time.
+  // Initial: "start" (Getting Started). Auto-follows the section the user is
+  // viewing (see scrollspy effect below) so the active item is never hidden
+  // inside a collapsed group.
+  const [openGroup, setOpenGroup] = useState<DocSection["group"] | null>("start");
+  const toggleGroup = (g: DocSection["group"]) =>
+    setOpenGroup(prev => (prev === g ? null : g));
 
   // Back-to-top visibility
   const [showTop, setShowTop] = useState(false);
@@ -252,6 +254,18 @@ const Docs = () => {
     () => sections.find(s => s.id === active),
     [sections, active]
   );
+
+  // Keep the sidebar accordion aligned with the section currently in view.
+  // Without this, the active section could end up inside a collapsed group
+  // and the user loses orientation.
+  useEffect(() => {
+    if (activeSection && activeSection.group !== openGroup) {
+      setOpenGroup(activeSection.group);
+    }
+    // openGroup is intentionally omitted: we only react to the active section
+    // changing, never to the user manually toggling a group.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
   const h3Items = useMemo(
     () => (activeSection?.blocks ?? []).filter(
       (b): b is Extract<Block, { kind: "h3" }> => b.kind === "h3" && !!b.id
@@ -355,7 +369,7 @@ const Docs = () => {
               {GROUP_ORDER.map(g => {
                 const items = grouped[g];
                 if (items.length === 0) return null;
-                const isOpen = openGroups[g];
+                const isOpen = openGroup === g;
                 return (
                   <div key={g}>
                     <button

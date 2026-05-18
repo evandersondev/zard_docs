@@ -145,7 +145,7 @@ final user = z.map({
     blocks: bi(
       [
         { kind: "p", text: "Add Zard to your pubspec.yaml:" },
-        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.0.0` },
+        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.1.0` },
         { kind: "p", text: "Then run:" },
         { kind: "code", lang: "sh", code: `flutter pub get` },
         { kind: "p", text: "Or use the pub command directly:" },
@@ -153,7 +153,7 @@ final user = z.map({
       ],
       [
         { kind: "p", text: "Adicione o Zard ao seu pubspec.yaml:" },
-        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.0.0` },
+        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.1.0` },
         { kind: "p", text: "Depois execute:" },
         { kind: "code", lang: "sh", code: `flutter pub get` },
         { kind: "p", text: "Ou use o comando pub diretamente:" },
@@ -260,10 +260,34 @@ s.parse('123-45-6789');` },
         { kind: "code", code: `z.string().date().parse('2024-04-19');
 z.string().datetime().parse('2025-04-19T15:30:00');
 z.string().time().parse('12:00:00');` },
-        { kind: "h3", text: "Identifiers: uuid / cuid / cuid2" },
+        { kind: "h3", text: "Identifiers: uuid / cuid / cuid2 / guid / nanoid / ulid" },
         { kind: "code", code: `z.string().uuid().parse('550e8400-e29b-41d4-a716-446655440000');
+z.string().uuid(version: 'v4').parse('...'); // also v1..v8
+z.string().uuidv4().parse('...');             // shortcut
+z.string().uuidv6().parse('...');             // shortcut
+z.string().uuidv7().parse('...');             // shortcut
+z.string().guid().parse('...');               // UUID v4 alias
 z.string().cuid().parse('abcdefghijklmnopqrst');
-z.string().cuid2().parse('abcdefghijklmnopqrstuvwxxy');` },
+z.string().cuid2().parse('abcdefghijklmnopqrstuvwxxy');
+z.string().nanoid().parse('V1StGXR8_Z5jdHi6B-myT');
+z.string().ulid().parse('01ARZ3NDEKTSV4RRFFQ69G5FAV');` },
+        { kind: "h3", text: "Network: ipv4 / ipv6 / cidrv4 / cidrv6 / mac / hostname / httpUrl" },
+        { kind: "code", code: `z.string().ipv4().parse('192.168.0.1');
+z.string().ipv6().parse('2001:db8::1');
+z.string().cidrv4().parse('10.0.0.0/24');
+z.string().cidrv6().parse('2001:db8::/32');
+z.string().mac().parse('00:1A:2B:3C:4D:5E');
+z.string().hostname().parse('api.example.com');
+z.string().httpUrl().parse('https://example.com/path');` },
+        { kind: "h3", text: "Encoding: base64 / base64url / hex / jwt" },
+        { kind: "code", code: `z.string().base64().parse('aGVsbG8=');
+z.string().base64url().parse('aGVsbG8');
+z.string().hex().parse('deadbeef');
+z.string().jwt().parse('eyJhbGciOi...');` },
+        { kind: "h3", text: "Hash: hash(algorithm)" },
+        { kind: "p", text: "Validates SHA / MD5 hashes by length and hex alphabet. Supported algorithms: md5, sha1, sha256, sha384, sha512." },
+        { kind: "code", code: `z.string().hash('sha256').parse('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+z.string().hash('md5').parse('5d41402abc4b2a76b9719d911017c592');` },
         { kind: "h3", text: "Transforms (mutate the value)" },
         { kind: "code", code: `z.string().trim().parse('  hi  ');         // 'hi'
 z.string().toUpperCase().parse('hi');      // 'HI'
@@ -305,10 +329,34 @@ s.parse('123-45-6789');` },
         { kind: "code", code: `z.string().date().parse('2024-04-19');
 z.string().datetime().parse('2025-04-19T15:30:00');
 z.string().time().parse('12:00:00');` },
-        { kind: "h3", text: "Identificadores: uuid / cuid / cuid2" },
+        { kind: "h3", text: "Identificadores: uuid / cuid / cuid2 / guid / nanoid / ulid" },
         { kind: "code", code: `z.string().uuid().parse('550e8400-e29b-41d4-a716-446655440000');
+z.string().uuid(version: 'v4').parse('...'); // também aceita v1..v8
+z.string().uuidv4().parse('...');             // atalho
+z.string().uuidv6().parse('...');             // atalho
+z.string().uuidv7().parse('...');             // atalho
+z.string().guid().parse('...');               // apelido de UUID v4
 z.string().cuid().parse('abcdefghijklmnopqrst');
-z.string().cuid2().parse('abcdefghijklmnopqrstuvwxxy');` },
+z.string().cuid2().parse('abcdefghijklmnopqrstuvwxxy');
+z.string().nanoid().parse('V1StGXR8_Z5jdHi6B-myT');
+z.string().ulid().parse('01ARZ3NDEKTSV4RRFFQ69G5FAV');` },
+        { kind: "h3", text: "Rede: ipv4 / ipv6 / cidrv4 / cidrv6 / mac / hostname / httpUrl" },
+        { kind: "code", code: `z.string().ipv4().parse('192.168.0.1');
+z.string().ipv6().parse('2001:db8::1');
+z.string().cidrv4().parse('10.0.0.0/24');
+z.string().cidrv6().parse('2001:db8::/32');
+z.string().mac().parse('00:1A:2B:3C:4D:5E');
+z.string().hostname().parse('api.example.com');
+z.string().httpUrl().parse('https://example.com/path');` },
+        { kind: "h3", text: "Encoding: base64 / base64url / hex / jwt" },
+        { kind: "code", code: `z.string().base64().parse('aGVsbG8=');
+z.string().base64url().parse('aGVsbG8');
+z.string().hex().parse('deadbeef');
+z.string().jwt().parse('eyJhbGciOi...');` },
+        { kind: "h3", text: "Hash: hash(algorithm)" },
+        { kind: "p", text: "Valida hashes SHA / MD5 pelo tamanho e alfabeto hexadecimal. Algoritmos suportados: md5, sha1, sha256, sha384, sha512." },
+        { kind: "code", code: `z.string().hash('sha256').parse('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+z.string().hash('md5').parse('5d41402abc4b2a76b9719d911017c592');` },
         { kind: "h3", text: "Transforms (modificam o valor)" },
         { kind: "code", code: `z.string().trim().parse('  hi  ');         // 'hi'
 z.string().toUpperCase().parse('hi');      // 'HI'

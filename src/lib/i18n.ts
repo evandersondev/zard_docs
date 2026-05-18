@@ -4,7 +4,7 @@ export const translations = {
   en: {
     nav: { docs: "Documentation", github: "GitHub", getStarted: "Get Started" },
     hero: {
-      badge: "v1.0 · Schema validation for Dart",
+      badge: "v1.1 · Schema validation for Dart",
       title1: "Schema validation",
       title2: "for Dart, done right.",
       subtitle: "Define, validate, and transform data with a powerful, intuitive API. Built for Flutter and Dart developers who love type safety.",
@@ -13,7 +13,7 @@ export const translations = {
       installNote: "dart pub add zard",
       tagline: "Define once. Validate anywhere. Get fully typed data.",
       credibility: {
-        version: "v1.0.0",
+        version: "v1.1.0",
         oss: "Open source · MIT",
         pub: "pub.dev",
         github: "GitHub",
@@ -33,14 +33,14 @@ export const translations = {
     },
     perf: {
       title: "Performance you can ship",
-      subtitle: "Benchmarked against the libraries you already know.",
+      subtitle: "Benchmarked against the libraries you already know — v1.1 update.",
       headers: ["Library", "Small object", "Complex object", "Notes"],
       rows: [
-        ["Zard", "~0.93 µs", "~7.3 µs", "Native Dart"],
-        ["Zod (JS)", "~0.13 µs", "~1.3 µs", "JS engine"],
-        ["Yup (JS)", "~5.7 µs", "~66 µs", "Reference"],
+        ["Zard", "~0.36 µs", "~2.93 µs", "Native Dart · v1.1"],
+        ["Zod (JS)", "~0.37 µs", "~0.89 µs", "JS engine"],
+        ["Yup (JS)", "~3.82 µs", "~40.6 µs", "Reference"],
       ],
-      callout: "~6–10× faster than Yup, competitive with Zod.",
+      callout: "Beats Zod on 8 of 11 scenarios · 6–60× faster than Yup.",
     },
     examples: {
       title: "Real Dart, no magic",
@@ -144,7 +144,7 @@ if (!form.success) {
   pt: {
     nav: { docs: "Documentação", github: "GitHub", getStarted: "Começar" },
     hero: {
-      badge: "v1.0 · Validação de schema para Dart",
+      badge: "v1.1 · Validação de schema para Dart",
       title1: "Validação de schema",
       title2: "para Dart, do jeito certo.",
       subtitle: "Defina, valide e transforme dados com uma API poderosa e intuitiva. Feita para desenvolvedores Flutter e Dart que amam type safety.",
@@ -153,7 +153,7 @@ if (!form.success) {
       installNote: "dart pub add zard",
       tagline: "Defina uma vez. Valide em qualquer lugar. Dados totalmente tipados.",
       credibility: {
-        version: "v1.0.0",
+        version: "v1.1.0",
         oss: "Código aberto · MIT",
         pub: "pub.dev",
         github: "GitHub",
@@ -173,14 +173,14 @@ if (!form.success) {
     },
     perf: {
       title: "Performance pronta para produção",
-      subtitle: "Comparado com as bibliotecas que você já conhece.",
+      subtitle: "Comparado com as bibliotecas que você já conhece — atualização v1.1.",
       headers: ["Library", "Objeto pequeno", "Objeto complexo", "Notas"],
       rows: [
-        ["Zard", "~0.93 µs", "~7.3 µs", "Dart nativo"],
-        ["Zod (JS)", "~0.13 µs", "~1.3 µs", "Engine JS"],
-        ["Yup (JS)", "~5.7 µs", "~66 µs", "Referência"],
+        ["Zard", "~0.36 µs", "~2.93 µs", "Dart nativo · v1.1"],
+        ["Zod (JS)", "~0.37 µs", "~0.89 µs", "Engine JS"],
+        ["Yup (JS)", "~3.82 µs", "~40.6 µs", "Referência"],
       ],
-      callout: "~6–10× mais rápido que Yup, competitivo com Zod.",
+      callout: "Mais rápido que Zod em 8 de 11 cenários · 6–60× mais rápido que Yup.",
     },
     examples: {
       title: "Dart real, sem mágica",
