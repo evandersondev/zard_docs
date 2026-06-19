@@ -13,7 +13,7 @@ export const translations = {
       installNote: "dart pub add zard",
       tagline: "Define once. Validate anywhere. Get fully typed data.",
       credibility: {
-        version: "v1.1.0",
+        version: "v1.2.0",
         oss: "Open source · MIT",
         pub: "pub.dev",
         github: "GitHub",
