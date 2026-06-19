@@ -145,7 +145,7 @@ final user = z.map({
     blocks: bi(
       [
         { kind: "p", text: "Add Zard to your pubspec.yaml:" },
-        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.1.0` },
+        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.2.0` },
         { kind: "p", text: "Then run:" },
         { kind: "code", lang: "sh", code: `flutter pub get` },
         { kind: "p", text: "Or use the pub command directly:" },
@@ -153,7 +153,7 @@ final user = z.map({
       ],
       [
         { kind: "p", text: "Adicione o Zard ao seu pubspec.yaml:" },
-        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.1.0` },
+        { kind: "code", lang: "yaml", filename: "pubspec.yaml", code: `dependencies:\n  zard: ^1.2.0` },
         { kind: "p", text: "Depois execute:" },
         { kind: "code", lang: "sh", code: `flutter pub get` },
         { kind: "p", text: "Ou use o comando pub diretamente:" },
@@ -913,7 +913,7 @@ z.iso.duration().parse('P1Y2M3DT4H5M6S');` },
           "Other: emoji() — single emoji",
         ] },
         { kind: "code", code: `z.string().uuid(version: 'v4').parse('550e8400-e29b-41d4-a716-446655440000');
-z.string().ipv4().parse('192.168.1.1');
+z.string().ipv4().parse('192.168.1.2');
 z.string().mac().parse('AA:BB:CC:DD:EE:FF');
 z.string().jwt().parse('eyJhbGciOi...');
 z.string().emoji().parse('😀');` },
@@ -931,7 +931,7 @@ z.iso.duration().parse('P1Y2M3DT4H5M6S');` },
           "Outros: emoji() — emoji único",
         ] },
         { kind: "code", code: `z.string().uuid(version: 'v4').parse('550e8400-e29b-41d4-a716-446655440000');
-z.string().ipv4().parse('192.168.1.1');
+z.string().ipv4().parse('192.168.1.2');
 z.string().mac().parse('AA:BB:CC:DD:EE:FF');
 z.string().jwt().parse('eyJhbGciOi...');
 z.string().emoji().parse('😀');` },
