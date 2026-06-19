@@ -4,7 +4,7 @@ export const translations = {
   en: {
     nav: { docs: "Documentation", github: "GitHub", getStarted: "Get Started" },
     hero: {
-      badge: "v1.1 · Schema validation for Dart",
+      badge: "v1.2 · Schema validation for Dart",
       title1: "Schema validation",
       title2: "for Dart, done right.",
       subtitle: "Define, validate, and transform data with a powerful, intuitive API. Built for Flutter and Dart developers who love type safety.",
