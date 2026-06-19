@@ -1,7 +1,7 @@
 import { useI18n } from "@/lib/i18n-context";
 
 // Values in µs — lower is better. Used to compute bar widths relative to slowest.
-// Updated for zard 1.1.0 (Dart 3.11 JIT vs Node 24 V8, Stopwatch w/ warmup).
+// Updated for zard 1.2.0 (Dart 3.11 JIT vs Node 24 V8, Stopwatch w/ warmup).
 const PERF_DATA = [
   { name: "Zard",   small: 0.36,  complex: 2.93, note: "Native Dart · v1.2", highlight: true  },
   { name: "Zod",    small: 0.37,  complex: 0.89, note: "JS engine",          highlight: false },
